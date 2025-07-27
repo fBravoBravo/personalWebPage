@@ -1,129 +1,78 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
-import Hr from "@components/Hr.astro";
-import Socials from "@components/Socials.astro";
-import { SOCIALS } from "@config";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug"
 
-const socialCount = SOCIALS.filter(social => social.active).length;
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
 ---
 
-<Layout>
-  <Header />
-  <main id="main-content">
-    <section id="hero">
-      <h1>BACKEND | CLOUD ENGINEER Ebury | May 2022 - Present</h1>
-      <h2>ENGINEER LEVEL 2 March 2024 - Present</h2>
-      <p>
-        In this position my work has pivoted, allowing me to work in the
-        development and set up of core foundations to enable myself and peers to
-        ship faster.
-      </p>
-      <ul>
-        <li>
-          Conceived and deployed tools for improving the development workflow
-          and CI/CD pipeline in GitHub actions which decreased time to market by
-          20%.
-        </li>
-        <li>
-          Created and established reverse proxy capabilities to allow for
-          authenticated communications to hit the team’s services within GCP.
-        </li>
-        <li>
-          Contributed to enabling authentication flows from GCP to AWS and vice
-          versa.
-        </li>
-        <li>
-          Crafted a webhook engine, a middleware framework for our APIs and a
-          wrapper for a better deloper experience using GCP services.
-        </li>
-      </ul>
-      <p>
-        Other duties at this role include leading projects to completion,
-        identifying pain points in the development process, onboarding and
-        mentoring of new team members and introducing code quality standards
-        that help the team meet deadlines and KPIs.
-      </p>
-      <h2>ENGINEER LEVEL 1 March 2023 - March 2024</h2>
-      <ul>
-        <li>
-          Assisted in the designing and implementing of a critical service for
-          contacting and gathering information on clients which resulted in a
-          better client experience and an increase in productivity of the
-          operations team by 50%.
-        </li>
-        <li>
-          Led the refactor of key services to make them more reliable resulting
-          in 30% fewer errors and a performance improvement of 20% using
-          event-driven design and highly available services principles.
-        </li>
-        <li>
-          Helped improve the debugging capabilities of the team by enhacing the
-          monitoring, logging and telemetry of the services.
-        </li>
-      </ul>
-      <p>
-        My main responsibilities at this role were making key contributions to
-        core projects of the team and participating in technical discussions.
-      </p>
-      <h2>ASSOCIATE May 2022 - March 2023</h2>
-      <ul>
-        <li>
-          Developed a tool for managing user accesses for the company’s CLM
-          platform.
-        </li>
-        <li>
-          Implemented a tool for performing bulk changes in core platforms of
-          the company making the application support team more efficient by 40%.
-        </li>
-      </ul>
-      <p>
-        {
-          // only display if at least one social link is enabled
-          socialCount > 0 && (
-            <div class="social-wrapper">
-              <div class="social-links">Social Links:</div>
-              <Socials />
-            </div>
-          )
-        }
-      </p>
-      <Hr />
-      <section>
-        <p>testing</p>
-      </section>
-    </section>
-    <Footer />
-  </main>
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5">
+    <div class="text-xl py-1">Hey there 👋</div>
+    <div class="text-5xl font-bold">I'm Manuel Ernesto</div>
+    <div class="text-3xl py-3 font-bold">Software Engineer and Entrepreneur</div>
+    <div class="py-2">
+      <text class="text-lg">
+        This is <b>Astrofy</b> a free and open-source template for your Personal Portfolio Website built with Astro and TailwindCSS.
+        Create in minutes a website with Blog, CV, Project Section, Store and RSS Feed. I hope you find
+        it useful!
+      </text>
+    </div>
+    <div class="mt-8">
+      <a class="btn" href="https://twitter.com/manuelernestog" target="_blank"> Let's connect!</a>
+      <a href="https://github.com/manuelernestog/astrofy" target="_blank" class="btn btn-outline ml-5">
+        Get This template
+      </a>
+    </div>
+  </div>
 
-  <style>
-    /* ===== Hero Section ===== */
-    #hero {
-      @apply pb-6 pt-8;
-    }
-    #hero h1 {
-      @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
-    }
-    #hero ul {
-      list-style: disc;
-      padding-left: 20px;
-      margin-bottom: 1em;
-    }
-    #hero .rss-link {
-      @apply mb-6;
-    }
-    #hero .rss-icon {
-      @apply mb-2 h-6 w-6 scale-110 fill-skin-accent sm:mb-3 sm:scale-125;
-    }
-    #hero p {
-      @apply my-2;
-    }
-    .social-wrapper {
-      @apply mt-4 flex flex-col sm:flex-row sm:items-center;
-    }
-    .social-links {
-      @apply mb-1 mr-2 whitespace-nowrap sm:mb-0;
-    }
-  </style>
-</Layout>
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+  </div>
+
+  <HorizontalCard
+    title="Demo Project 1"
+    img="/post_img.webp"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    url="#"
+    badge="NEW"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Demo Project 2"
+    img="/post_img.webp"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    url="#"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Demo Project 3"
+    img="/post_img.webp"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    url="#"
+    badge="FOSS"
+  />
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Latest from blog</div>
+  </div>
+
+  {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/blog/" + createSlug(post.data.title, post.slug)}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+</BaseLayout>
