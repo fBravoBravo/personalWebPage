@@ -1,3 +1,80 @@
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
+
+@media print {
+    .drawer-side,
+    .lg\\:drawer-open > .drawer-toggle,
+    .lg\\:drawer-open > .drawer-side,
+    .sticky.lg\\:hidden,
+    .social-icons,
+    .no-print {
+        display: none !important;
+    }
+
+    .drawer-content {
+        margin-left: 0 !important;
+    }
+
+    .bg-base-100 {
+        background: white !important;
+        color: black !important;
+    }
+
+    .text-primary,
+    .text-secondary,
+    .text-accent {
+        color: #111 !important;
+    }
+
+    .badge {
+        border: 1px solid #ccc !important;
+        background: transparent !important;
+        color: #111 !important;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+        page-break-inside: avoid !important;
+    }
+
+    .time-line-container .group {
+        page-break-inside: avoid !important;
+    }
+
+    a {
+        text-decoration: none !important;
+        color: #111 !important;
+    }
+
+    .page-break {
+        page-break-before: always;
+    }
+
+    body {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animation-delay-100 { animation-delay: 0.1s; }
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-300 { animation-delay: 0.3s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-500 { animation-delay: 0.5s; }

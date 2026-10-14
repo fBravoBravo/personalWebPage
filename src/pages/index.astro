@@ -1,51 +1,195 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import HorizontalCard from "../components/HorizontalCard.astro";
-import { getCollection } from "astro:content";
-import createSlug from "../lib/createSlug"
 
-const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const stats = [
+  { value: "50%", label: "Operations productivity boost", icon: "⚡" },
+  { value: "30%", label: "Error reduction achieved", icon: "🛡️" },
+  { value: "20%", label: "Faster time-to-market", icon: "🚀" },
+  { value: "80%+", label: "Test coverage on core systems", icon: "✅" },
+];
 
-const last_posts = posts.slice(0, 3);
+const skillCategories = [
+  {
+    title: "Languages & Runtimes",
+    items: ["TypeScript", "JavaScript", "Node.js", "Python"],
+    color: "primary",
+  },
+  {
+    title: "Frameworks",
+    items: ["NestJS", "Fastify", "FastAPI", "Django"],
+    color: "secondary",
+  },
+  {
+    title: "Cloud & Infrastructure",
+    items: ["AWS ECS Fargate", "SQS", "DynamoDB", "GCP Cloud Run", "Terraform"],
+    color: "accent",
+  },
+  {
+    title: "APIs & Integration",
+    items: ["REST", "OpenAPI", "Webhooks", "JSON", "Event-Driven"],
+    color: "info",
+  },
+];
+
+const highlights = [
+  {
+    title: "High-Scale Messaging",
+    desc: "Architected contract management services on ECS, SQS, and DynamoDB with idempotency patterns and DLQ handling for resilience.",
+    icon: "M",
+  },
+  {
+    title: "Cross-Cloud Security",
+    desc: "Orchestrated OIDC-based authentication between GCP and AWS, eliminating long-lived static credentials entirely.",
+    icon: "S",
+  },
+  {
+    title: "AI-Augmented Engineering",
+    desc: "Leveraged LLMs to auto-generate OpenAPI docs and unit tests, accelerating development cycles and maintaining 80%+ coverage.",
+    icon: "AI",
+  },
+  {
+    title: "Infrastructure as Code",
+    desc: "Built immutable AWS environments with Terraform and GitHub Actions, ensuring 100% parity and cutting infrastructure drift to zero.",
+    icon: "IaC",
+  },
+];
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <div class="pb-12 mt-5">
-    <div class="text-xl py-1">Hey there 👋</div>
-    <div class="text-5xl font-bold">I'm Francisco Bravo</div>
-    <div class="text-3xl py-3 font-bold">Software and Cloud Engineer</div>
-    <div class="py-2">
-      <text class="text-lg">
-        Highly proficient and results-oriented Engineer with a strong background in developing robust tools and optimizing development workflows. Proven ability to lead projects, enhance system reliability, and improve team efficiency through innovative solutions and best practices. Native Spanish speaker with full English proficiency, adept at fostering collaborative environments and mentoring team members.
-      </text>
+  <!-- Hero -->
+  <div class="pb-12 mt-5 animate-fade-in-up">
+    <div class="text-primary font-bold text-lg tracking-widest uppercase mb-2">Backend & Cloud Engineer</div>
+    <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4">
+      Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Francisco Bravo</span>
+    </h1>
+    <p class="text-xl text-base-content/80 leading-relaxed max-w-2xl">
+      I architect scalable <strong>Node.js/TypeScript</strong> and <strong>Python</strong> services within <strong>GCP</strong> and <strong>AWS</strong> environments. 
+      I specialize in event-driven architectures, Infrastructure as Code, and AI-augmented development workflows that deliver measurable business impact.
+    </p>
+    <div class="flex flex-wrap gap-3 mt-8">
+      <a href="/cv" class="btn btn-primary">View Full Resume</a>
+      <a href="mailto:bravofran3@gmail.com" class="btn btn-outline">Get in Touch</a>
+      <a href="https://github.com/fBravoBravo" target="_blank" class="btn btn-ghost gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/fbravobravo" target="_blank" class="btn btn-ghost gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        LinkedIn
+      </a>
     </div>
   </div>
 
-  <!-- <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+  <!-- Impact Stats -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 animate-fade-in-up animation-delay-200">
+    {stats.map((stat) => (
+      <div class="card bg-base-200 shadow-lg hover:shadow-primary/20 hover:-translate-y-1 transition-all duration-300">
+        <div class="card-body items-center text-center p-5">
+          <div class="text-3xl mb-1">{stat.icon}</div>
+          <div class="text-3xl font-black text-primary">{stat.value}</div>
+          <div class="text-sm text-base-content/70">{stat.label}</div>
+        </div>
+      </div>
+    ))}
   </div>
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  /> -->
+  <!-- What I Do -->
+  <div class="mb-16 animate-fade-in-up animation-delay-300">
+    <h2 class="text-3xl font-bold mb-2">Engineering Highlights</h2>
+    <p class="text-base-content/70 mb-6">Selected work that demonstrates high-leverage impact across infrastructure, backend, and developer experience.</p>
+    <div class="grid md:grid-cols-2 gap-5">
+      {highlights.map((h) => (
+        <div class="card bg-base-200 shadow-md hover:shadow-lg hover:border-primary/30 border border-transparent transition-all duration-300">
+          <div class="card-body">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold text-lg shrink-0">
+                {h.icon}
+              </div>
+              <div>
+                <h3 class="font-bold text-lg text-base-content mb-1">{h.title}</h3>
+                <p class="text-sm text-base-content/80 leading-relaxed">{h.desc}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
 
+  <!-- Tech Stack -->
+  <div class="mb-16 animate-fade-in-up animation-delay-400">
+    <h2 class="text-3xl font-bold mb-2">Tech Stack</h2>
+    <p class="text-base-content/70 mb-6">Tools and technologies I use to ship reliable, scalable systems.</p>
+    <div class="grid md:grid-cols-2 gap-5">
+      {skillCategories.map((cat) => (
+        <div class="card bg-base-200 shadow-md">
+          <div class="card-body py-5">
+            <h3 class="font-bold text-base-content mb-3 flex items-center gap-2">
+              <span class={`w-2 h-2 rounded-full bg-${cat.color}`}></span>
+              {cat.title}
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              {cat.items.map((item) => (
+                <span class={`badge badge-${cat.color} badge-outline`}>{item}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Experience Teaser -->
+  <div class="mb-16 animate-fade-in-up animation-delay-500">
+    <h2 class="text-3xl font-bold mb-6">Career</h2>
+    <div class="relative border-l-2 border-primary/30 ml-3 space-y-8">
+      <div class="relative pl-8">
+        <span class="absolute -left-[9px] top-1 w-4 h-4 bg-primary rounded-full border-4 border-base-100"></span>
+        <div class="text-sm text-primary font-semibold tracking-wide">MAR 2024 — PRESENT</div>
+        <h3 class="text-xl font-bold text-base-content">Engineer Level 2</h3>
+        <p class="text-base-content/70 font-medium">Ebury</p>
+        <p class="text-base-content/80 mt-2 text-sm leading-relaxed">
+          Architecting AWS environments with Terraform, building high-scale messaging on ECS/SQS/DynamoDB, 
+          engineering CI/CD pipelines, and leveraging LLMs for AI-augmented development.
+        </p>
+      </div>
+      <div class="relative pl-8">
+        <span class="absolute -left-[9px] top-1 w-4 h-4 bg-secondary rounded-full border-4 border-base-100"></span>
+        <div class="text-sm text-secondary font-semibold tracking-wide">MAR 2023 — MAR 2024</div>
+        <h3 class="text-xl font-bold text-base-content">Engineer Level 1</h3>
+        <p class="text-base-content/70 font-medium">Ebury</p>
+        <p class="text-base-content/80 mt-2 text-sm leading-relaxed">
+          Led strategic refactors using event-driven design, cutting errors by 30% and boosting performance by 20%. 
+          Designed a mission-critical client data ingestion service that increased ops productivity by 50%.
+        </p>
+      </div>
+      <div class="relative pl-8">
+        <span class="absolute -left-[9px] top-1 w-4 h-4 bg-accent rounded-full border-4 border-base-100"></span>
+        <div class="text-sm text-accent font-semibold tracking-wide">MAY 2022 — MAR 2023</div>
+        <h3 class="text-xl font-bold text-base-content">Associate</h3>
+        <p class="text-base-content/70 font-medium">Ebury</p>
+        <p class="text-base-content/80 mt-2 text-sm leading-relaxed">
+          Developed internal tools and a bulk-data modification engine that made the support team 40% more efficient, 
+          while building proficiency in Node.js, GCP, and AWS.
+        </p>
+      </div>
+    </div>
+    <div class="mt-6 ml-3">
+      <a href="/cv" class="btn btn-outline btn-sm">View Full Experience →</a>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="card bg-gradient-to-br from-primary/20 to-secondary/20 border border-primary/20 mb-8 animate-fade-in-up animation-delay-500">
+    <div class="card-body items-center text-center py-10">
+      <h2 class="text-3xl font-bold text-base-content mb-2">Let's Build Something Great</h2>
+      <p class="text-base-content/80 max-w-lg mb-6">
+        I'm always open to discussing new projects, architecture challenges, or opportunities to help teams ship faster and more reliably.
+      </p>
+      <div class="flex flex-wrap gap-3 justify-center">
+        <a href="mailto:bravofran3@gmail.com" class="btn btn-primary">Send an Email</a>
+        <a href="/cv" class="btn btn-outline">Read My Resume</a>
+      </div>
+    </div>
+  </div>
 </BaseLayout>
