@@ -2,9 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
 import fs from 'node:fs';
+import path from 'node:path';
 import { load as yamlLoad } from 'js-yaml';
 
-const resumePath = new URL('../../../resumee/francisco-bravo.yml', import.meta.url);
+const resumePath = path.join(process.cwd(), 'resumee', 'francisco-bravo.yml');
 const file = fs.readFileSync(resumePath, 'utf8');
 const resume = yamlLoad(file) as any;
 
