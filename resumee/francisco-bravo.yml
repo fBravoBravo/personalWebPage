@@ -1,0 +1,119 @@
+# yaml-language-server: $schema=https://yamlresume.dev/schema.json
+
+---
+content:
+  basics:
+    name: Francisco Bravo
+    headline: Backend | Cloud Engineer
+    email: bravofran3@gmail.com
+    phone: +34 635 880 438
+    summary: |
+      High-leverage Backend & Cloud Engineer with deep experience in high-growth Fintech startups. Expert in architecting scalable Node.js/TypeScript and Python services within GCP and AWS environments. Specialized in REST API design (NestJS, Fastify, FastAPI) and Infrastructure as Code (Terraform) to build resilient, event-driven architectures. AI-augmented developer proficient in leveraging Large Language Models (LLMs) and agentic workflows to accelerate development cycles, automate documentation, and optimize code quality.
+
+  work:
+    - name: Ebury
+      position: Engineer Level 2
+      startDate: "2024-03"
+      summary: |
+        - Infrastructure & FinOps: Architected AWS environments with Terraform, optimizing Fargate costs and ensuring 100% parity via immutable infrastructure
+        - High-Scale Messaging: Built a contract management service on ECS, SQS, and DynamoDB with idempotency patterns and DLQ handling
+        - CI/CD: Engineered GitHub Actions pipelines with contract testing and SAST, cutting time-to-market by 20%
+        - AI-Augmented Engineering: Leveraged LLMs to auto-generate OpenAPI docs and unit tests, achieving 80%+ coverage on core middleware
+        - Cross-Cloud Security: Orchestrated OIDC-based auth between GCP and AWS, eliminating long-lived static credentials
+      keywords:
+        - Terraform
+        - AWS ECS
+        - SQS
+        - DynamoDB
+        - GitHub Actions
+        - OIDC
+        - LLMs
+    - name: Ebury
+      position: Engineer Level 1
+      startDate: "2023-03"
+      endDate: "2024-03"
+      summary: |
+        - System Refactoring: Led a strategic refactor of legacy services using event-driven design, resulting in a 30% reduction in error rates and a 20% boost in performance
+        - Productivity Impact: Designed a mission-critical client data ingestion service that increased operations team productivity by 50%
+        - Observability: Enhanced system reliability by implementing advanced monitoring, logging, and telemetry suites to streamline debugging and incident response
+      keywords:
+        - Event-Driven
+        - Observability
+        - Refactoring
+    - name: Ebury
+      position: Associate
+      startDate: "2022-05"
+      endDate: "2023-03"
+      summary: |
+        - Developed professional proficiency in Node.js, GCP and AWS while contributing to internal tools that streamlined cross-departmental workflows
+        - Gained deep experience in API integration and batch processing by implementing a bulk-data modification engine that increased support team efficiency by 40%
+      keywords:
+        - Node.js
+        - GCP
+        - AWS
+        - Batch Processing
+
+  education:
+    - institution: University of Malaga
+      area: Computer Science
+      degree: Bachelor
+      startDate: "2017"
+      endDate: "2022"
+
+  certificates:
+    - name: Google Cloud Digital Leader
+      issuer: Google Cloud
+
+  skills:
+    - name: Languages
+      level: Expert
+      keywords:
+        - TypeScript
+        - JavaScript
+        - Node.js
+        - Python
+    - name: Frameworks
+      level: Expert
+      keywords:
+        - NestJS
+        - Fastify
+        - FastAPI
+        - Django
+    - name: API Standards
+      level: Advanced
+      keywords:
+        - OpenAPI
+        - REST
+        - Webhooks
+        - JSON
+    - name: Cloud
+      level: Advanced
+      keywords:
+        - AWS ECS Fargate
+        - AWS SQS
+        - DynamoDB
+        - API Gateway
+        - GCP Cloud Run
+        - GCP Firestore
+        - GitHub Actions
+        - Git
+    - name: Infrastructure as Code
+      level: Advanced
+      keywords:
+        - Terraform
+    - name: Architecture
+      level: Advanced
+      keywords:
+        - Event-Driven
+        - Microservices
+        - Serverless
+        - Hub-and-Spoke
+
+  languages:
+    - language: Spanish
+      fluency: Native or Bilingual Proficiency
+    - language: English
+      fluency: Full Professional Proficiency
+
+locale:
+  language: en
